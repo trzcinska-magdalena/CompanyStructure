@@ -35,23 +35,11 @@ namespace CompanyStruture
             {
                 CityComboBox.Items.Add(city.Name);
             }
-
-            
-            
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            String[] a = { "1", "Anna" };
-            ListViewItem listViewItem = new ListViewItem(a);
-
-
-            //ShowListEmployee.Items.Add(listViewItem);
-
-            using (EmployeeForm list = new EmployeeForm())
-            {
-                //list.ShowListEmployee_Init();
-            }
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CompanyStruture.Models;
+﻿using CompanyStruture.Forms;
+using CompanyStruture.Models;
 using CompanyStruture.Repository;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,11 @@ namespace CompanyStruture
 
         public void AddEmployeesToList()
         {
-            List<Employee> employees = _structureRepository.GetEmployee();
+            List<Employee> employees = _structureRepository.GetEmployees();
 
             foreach (Employee emp in employees)
             {
-                ListViewItem listViewItem = new ListViewItem(emp.getData());
+                ListViewItem listViewItem = new ListViewItem(emp.getPersonalData());
                 ShowListEmployee.Items.Add(listViewItem);
             }
         }
@@ -48,13 +49,9 @@ namespace CompanyStruture
             if (ShowListEmployee.SelectedItems.Count > 0)
             {
                 ListViewItem item = ShowListEmployee.SelectedItems[0];
-                //int id = item.SubItems[0].Text;
-                Console.WriteLine(item.SubItems[0].Text);
-                //item.SubItems[0].Text;
-                //item.SubItems[1].Text;
 
-                //AdditionEmployee additionEmployee = new AdditionEmployee();
-                //additionEmployee.ShowDialog();
+                EmployeeDetail employeeDetail = new EmployeeDetail(item.Text);
+                employeeDetail.ShowDialog();
             }
         }
     }
