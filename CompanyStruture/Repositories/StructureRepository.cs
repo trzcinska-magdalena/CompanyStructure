@@ -90,13 +90,10 @@ namespace CompanyStruture.Repository
                         $"INNER JOIN City on Address.CityID = City.ID " +
                         $"WHERE Employee.ID = {id}";
 
-
             Employee employee = new Employee();
 
             sqlConnection.Open();
-
             SqlCommand myCommand = new SqlCommand(query, sqlConnection);
-
 
             var data = myCommand.ExecuteReader();
             while (data.Read())
