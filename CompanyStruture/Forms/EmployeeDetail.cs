@@ -28,7 +28,7 @@ namespace CompanyStruture.Forms
             Employee employee = _structureRepository.GetEmployee(employeeId);
 
             string[] data = employee.getPersonalData();
-            string[] address = employee.getAddress();
+            string[] address = employee.Address.getAddress();
 
             NameEmp.Text = $"{data[1]} {data[2]}\nPesel: {data[3]}\n\nAddress: {address[1]} {address[2]}{address[3]} {address[0]}";
         }

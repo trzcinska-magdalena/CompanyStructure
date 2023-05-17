@@ -20,12 +20,13 @@ namespace CompanyStruture
 
         private void AddEmployee_Click(object sender, EventArgs e)
         {
-            AdditionEmployee additionEmployee = new AdditionEmployee();
+            AdditionEmployee additionEmployee = new AdditionEmployee(this);
             additionEmployee.ShowDialog();
         }
 
         public void AddEmployeesToList()
         {
+            ShowListEmployee.Items.Clear();
             List<Employee> employees = _structureRepository.GetEmployees();
 
             foreach (Employee emp in employees)

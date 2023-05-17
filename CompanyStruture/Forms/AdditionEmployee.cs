@@ -10,8 +10,10 @@ namespace CompanyStruture
     public partial class AdditionEmployee : Form
     {
         private readonly IStructureRepository _structureRepository;
-        public AdditionEmployee()
+        private EmployeeForm employeeForm;
+        public AdditionEmployee(EmployeeForm employeeForm)
         {
+            this.employeeForm = employeeForm;
             _structureRepository = new StructureRepository();
             InitializeComponent();
             FuelComboBox();
@@ -33,19 +35,27 @@ namespace CompanyStruture
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            
+            if(nameTextBox.Text == "" || surnameTextBox.Text == "" || peselTextBox.Text == "" || 
+                streetComboBox.Text == "" || buildingNumberTextBox.Text == "" || localNumberTextBox.Text == "" || cityComboBox.SelectedIndex.ToString() == "")
+            {
+                throw new Exception("values cannot be empty");
+            }
+
             Employee employee = new Employee()
             {
-                Id = 0,
                 Name = nameTextBox.Text,
                 Surname = surnameTextBox.Text,
                 Pesel = peselTextBox.Text,
-                City = cityComboBox.SelectedItem.ToString(),
-                Street = streetComboBox.Text,
-                BuildingNumber = buildingNumberTextBox.Text,
-                ApartmentNumber = int.Parse(localNumberTextBox.Text)
+                Address = new Address()
+                {
+                    City = cityComboBox.SelectedItem.ToString(),
+                    Street = streetComboBox.Text,
+                    BuildingNumber = buildingNumberTextBox.Text,
+                    ApartmentNumber = int.Parse(localNumberTextBox.Text)
+                }
             };
             _structureRepository.AddEmployee(employee);
+            employeeForm.AddEmployeesToList();
         }
 
         private void PeselTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
