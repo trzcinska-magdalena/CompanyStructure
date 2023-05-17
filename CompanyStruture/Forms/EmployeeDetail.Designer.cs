@@ -30,6 +30,8 @@
         {
             this.NameEmp = new System.Windows.Forms.Label();
             this.AddAbsenceBtn = new System.Windows.Forms.Button();
+            this.absenceTreeView = new System.Windows.Forms.TreeView();
+            this.ContractListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // NameEmp
@@ -38,24 +40,42 @@
             this.NameEmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.NameEmp.Location = new System.Drawing.Point(12, 9);
             this.NameEmp.Name = "NameEmp";
-            this.NameEmp.Size = new System.Drawing.Size(31, 16);
+            this.NameEmp.Size = new System.Drawing.Size(31, 13);
             this.NameEmp.TabIndex = 0;
             this.NameEmp.Text = "......";
             // 
             // AddAbsenceBtn
             // 
-            this.AddAbsenceBtn.Location = new System.Drawing.Point(529, 9);
+            this.AddAbsenceBtn.Location = new System.Drawing.Point(15, 107);
             this.AddAbsenceBtn.Name = "AddAbsenceBtn";
             this.AddAbsenceBtn.Size = new System.Drawing.Size(120, 32);
             this.AddAbsenceBtn.TabIndex = 1;
             this.AddAbsenceBtn.Text = "Add absence";
             this.AddAbsenceBtn.UseVisualStyleBackColor = true;
             // 
+            // absenceTreeView
+            // 
+            this.absenceTreeView.Location = new System.Drawing.Point(15, 145);
+            this.absenceTreeView.Name = "absenceTreeView";
+            this.absenceTreeView.Size = new System.Drawing.Size(292, 277);
+            this.absenceTreeView.TabIndex = 2;
+            // 
+            // ContractListView
+            // 
+            this.ContractListView.HideSelection = false;
+            this.ContractListView.Location = new System.Drawing.Point(322, 145);
+            this.ContractListView.Name = "ContractListView";
+            this.ContractListView.Size = new System.Drawing.Size(327, 97);
+            this.ContractListView.TabIndex = 3;
+            this.ContractListView.UseCompatibleStateImageBehavior = false;
+            // 
             // EmployeeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 450);
+            this.ClientSize = new System.Drawing.Size(661, 434);
+            this.Controls.Add(this.ContractListView);
+            this.Controls.Add(this.absenceTreeView);
             this.Controls.Add(this.AddAbsenceBtn);
             this.Controls.Add(this.NameEmp);
             this.Name = "EmployeeDetail";
@@ -70,5 +90,7 @@
 
         private System.Windows.Forms.Label NameEmp;
         private System.Windows.Forms.Button AddAbsenceBtn;
+        private System.Windows.Forms.TreeView absenceTreeView;
+        private System.Windows.Forms.ListView ContractListView;
     }
 }

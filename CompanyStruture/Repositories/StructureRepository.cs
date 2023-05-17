@@ -1,5 +1,6 @@
 ﻿using CompanyStruture.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace CompanyStruture.Repository
         void AddEmployee(Employee employee);
         List<City> GetCities();
         List<Address> GetAddresses();
+        Dictionary<string, List<Absence>> GetAbsences(int id);
     }
 
     public class StructureRepository : IStructureRepository
@@ -182,6 +184,44 @@ namespace CompanyStruture.Repository
             }
 
             return addresses;
+        }
+
+        public Dictionary<string, List<Absence>> GetAbsences(int id)
+        {
+            string query = $"SELECT Absence.Name, Employee_Absence.DateFrom, Employee_Absence.DateTo FROM Employee_Absence " +
+                        $"INNER JOIN Absence on Employee_Absence.AbsenceID = Absence.ID " +
+                        $"WHERE Employee_Absence.EmployeeID = {id}";
+
+            Dictionary<string, List<Absence>> absences = new Dictionary<string, List<Absence>>();
+
+            var data = executeReaderSql(query);
+            while (data.Read())
+            {
+                if(absences.ContainsKey(data.GetString(0)))
+                {
+                    absences[data.GetString(0)].Add(new Absence()
+                    {
+                        EmployeeID = id,
+                        AbsenceName = data.GetString(0),
+                        DateFrom = data.GetDateTime(1),
+                        DateTo = data.GetDateTime(2)
+                    });
+                }
+                else
+                {
+                    absences.Add(data.GetString(0), new List<Absence>
+                    {
+                        new Absence()
+                        {
+                            EmployeeID = id,
+                            AbsenceName = data.GetString(0),
+                            DateFrom = data.GetDateTime(1),
+                            DateTo = data.GetDateTime(2)
+                        }
+                    });
+                }
+            }
+            return absences;
         }
     }
 }
