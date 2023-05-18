@@ -17,8 +17,9 @@ namespace CompanyStruture.Repository
         List<City> GetCities();
         List<Address> GetAddresses();
         List<Absence> GetAbsencesNames();
-        Dictionary<string, List<EmployeeAbsence>> EmployeeAbsence(int id);
+        Dictionary<string, List<EmployeeAbsence>> GetEmployeeAbsence(int id);
         void AddAbsence(EmployeeAbsence absence);
+        List<Contract> GetEmployeeContracts(int id);
     }
 
     public class StructureRepository : IStructureRepository
@@ -188,7 +189,7 @@ namespace CompanyStruture.Repository
             return addresses;
         }
 
-        public Dictionary<string, List<EmployeeAbsence>> EmployeeAbsence(int id)
+        public Dictionary<string, List<EmployeeAbsence>> GetEmployeeAbsence(int id)
         {
             string query = $"SELECT Absence.Name, Employee_Absence.DateFrom, Employee_Absence.DateTo FROM Employee_Absence " +
                         $"INNER JOIN Absence on Employee_Absence.AbsenceID = Absence.ID " +
@@ -254,6 +255,39 @@ namespace CompanyStruture.Repository
             }
 
             return absences;
+        }
+
+        public List<Contract> GetEmployeeContracts(int id)
+        {
+            string query = $"SELECT Employee_Contract.EmployeeID, Department.Name, Contract.Number, ContractType.Type, Position.Name, " +
+                        $"Contract.DateFrom, Contract.DateTo, SalaryType.Type, Contract.Salary FROM Employee_Contract " +
+                        $"INNER JOIN Department on Employee_Contract.DepartmentCode = Department.Code " +
+                        $"INNER JOIN Contract on Employee_Contract.ContractNumber = Contract.Number " +
+                        $"INNER JOIN ContractType on Contract.ContractTypeID = ContractType.ID " +
+                        $"INNER JOIN Position on Contract.PositionID = Position.ID " +
+                        $"INNER JOIN SalaryType on Contract.SalaryTypeID = SalaryType.ID " +
+                        $"WHERE Employee_Contract.EmployeeID = {id}";
+
+            List<Contract> contracts = new List<Contract>();
+
+            var data = executeReaderSql(query);
+            while (data.Read())
+            {
+                contracts.Add(new Contract()
+                {
+                    EmployeeID = id,
+                    Department = data.GetString(1),
+                    ContractNumber = data.GetString(2),
+                    ContractType = data.GetString(3),
+                    Position = data.GetString(4),
+                    DateFrom = data.GetDateTime(5),
+                    DateTo = data.IsDBNull(6) ? (DateTime?)null : data.GetDateTime(6),
+                    SalaryType = data.GetString(7),
+                    Salary = data.GetDouble(8),
+                });
+            }
+
+            return contracts;
         }
     }
 }

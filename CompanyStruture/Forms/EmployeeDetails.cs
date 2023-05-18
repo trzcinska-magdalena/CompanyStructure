@@ -29,6 +29,7 @@ namespace CompanyStruture.Forms
         {
             showPersonalData();
             showAbsence();
+            showContracts();
         }
 
         private void showPersonalData()
@@ -44,7 +45,7 @@ namespace CompanyStruture.Forms
         public void showAbsence()
         {
             absenceTreeView.Nodes.Clear();
-            Dictionary<string, List<EmployeeAbsence>> absences = _structureRepository.EmployeeAbsence(employeeId);
+            Dictionary<string, List<EmployeeAbsence>> absences = _structureRepository.GetEmployeeAbsence(employeeId);
 
             foreach (var ab in absences)
             {
@@ -56,6 +57,19 @@ namespace CompanyStruture.Forms
                     parent.Nodes.Add(absence); 
                 }
             }
+        }
+
+        public void showContracts()
+        {
+            ContractListView.Items.Clear();
+            List<Contract> contracts = _structureRepository.GetEmployeeContracts(employeeId);
+
+            foreach (Contract contract in contracts)
+            {
+                ListViewItem listViewItem = new ListViewItem(contract.getData());
+                ContractListView.Items.Add(listViewItem);
+            }
+            
         }
 
         private void AddAbsenceBtn_Click(object sender, EventArgs e)
