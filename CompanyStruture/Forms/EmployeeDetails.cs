@@ -14,11 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CompanyStruture.Forms
 {
-    public partial class EmployeeDetail : Form
+    public partial class EmployeeDetails : Form
     {
         private readonly IStructureRepository _structureRepository;
         int employeeId;
-        public EmployeeDetail(String employeeId)
+        public EmployeeDetails(String employeeId)
         {
             _structureRepository = new StructureRepository();
             this.employeeId = int.Parse(employeeId);
@@ -41,9 +41,10 @@ namespace CompanyStruture.Forms
             NameEmp.Text = $"{data[1]} {data[2]}\nPesel: {data[3]}\n\nAddress: {address[1]} {address[2]}{address[3]} {address[0]}";
         }
 
-        private void showAbsence()
+        public void showAbsence()
         {
-            Dictionary<string, List<Absence>> absences = _structureRepository.GetAbsences(employeeId);
+            absenceTreeView.Nodes.Clear();
+            Dictionary<string, List<EmployeeAbsence>> absences = _structureRepository.EmployeeAbsence(employeeId);
 
             foreach (var ab in absences)
             {
@@ -55,6 +56,12 @@ namespace CompanyStruture.Forms
                     parent.Nodes.Add(absence); 
                 }
             }
+        }
+
+        private void AddAbsenceBtn_Click(object sender, EventArgs e)
+        {
+            AddAbsence addAbsence = new AddAbsence(employeeId, this);
+            addAbsence.Show();
         }
     }
 }

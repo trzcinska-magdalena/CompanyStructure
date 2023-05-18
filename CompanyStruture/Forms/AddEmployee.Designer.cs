@@ -1,6 +1,6 @@
 ﻿namespace CompanyStruture
 {
-    partial class AdditionEmployee
+    partial class AddEmployee
     {
         /// <summary>
         /// Required designer variable.

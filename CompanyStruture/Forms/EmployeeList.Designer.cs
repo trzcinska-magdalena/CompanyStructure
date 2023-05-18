@@ -30,10 +30,10 @@
         {
             this.AddEmployee = new System.Windows.Forms.Button();
             this.ShowListEmployee = new System.Windows.Forms.ListView();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Name2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Pesel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // AddEmployee
@@ -63,6 +63,11 @@
             this.ShowListEmployee.View = System.Windows.Forms.View.Details;
             this.ShowListEmployee.SelectedIndexChanged += new System.EventHandler(this.ShowListEmployee_SelectedIndexChanged);
             // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            this.Id.Width = 130;
+            // 
             // Name2
             // 
             this.Name2.Text = "Name";
@@ -78,11 +83,6 @@
             this.Pesel.Text = "Pesel";
             this.Pesel.Width = 90;
             // 
-            // Id
-            // 
-            this.Id.Text = "Id";
-            this.Id.Width = 130;
-            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -92,6 +92,7 @@
             this.Controls.Add(this.AddEmployee);
             this.Name = "EmployeeForm";
             this.Text = "Employee";
+            this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.ResumeLayout(false);
 
         }

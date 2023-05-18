@@ -16,7 +16,9 @@ namespace CompanyStruture.Repository
         void AddEmployee(Employee employee);
         List<City> GetCities();
         List<Address> GetAddresses();
-        Dictionary<string, List<Absence>> GetAbsences(int id);
+        List<Absence> GetAbsencesNames();
+        Dictionary<string, List<EmployeeAbsence>> EmployeeAbsence(int id);
+        void AddAbsence(EmployeeAbsence absence);
     }
 
     public class StructureRepository : IStructureRepository
@@ -186,20 +188,20 @@ namespace CompanyStruture.Repository
             return addresses;
         }
 
-        public Dictionary<string, List<Absence>> GetAbsences(int id)
+        public Dictionary<string, List<EmployeeAbsence>> EmployeeAbsence(int id)
         {
             string query = $"SELECT Absence.Name, Employee_Absence.DateFrom, Employee_Absence.DateTo FROM Employee_Absence " +
                         $"INNER JOIN Absence on Employee_Absence.AbsenceID = Absence.ID " +
                         $"WHERE Employee_Absence.EmployeeID = {id}";
 
-            Dictionary<string, List<Absence>> absences = new Dictionary<string, List<Absence>>();
+            Dictionary<string, List<EmployeeAbsence>> absences = new Dictionary<string, List<EmployeeAbsence>>();
 
             var data = executeReaderSql(query);
             while (data.Read())
             {
                 if(absences.ContainsKey(data.GetString(0)))
                 {
-                    absences[data.GetString(0)].Add(new Absence()
+                    absences[data.GetString(0)].Add(new EmployeeAbsence()
                     {
                         EmployeeID = id,
                         AbsenceName = data.GetString(0),
@@ -209,9 +211,9 @@ namespace CompanyStruture.Repository
                 }
                 else
                 {
-                    absences.Add(data.GetString(0), new List<Absence>
+                    absences.Add(data.GetString(0), new List<EmployeeAbsence>
                     {
-                        new Absence()
+                        new EmployeeAbsence()
                         {
                             EmployeeID = id,
                             AbsenceName = data.GetString(0),
@@ -221,6 +223,36 @@ namespace CompanyStruture.Repository
                     });
                 }
             }
+            return absences;
+        }
+
+        public void AddAbsence(EmployeeAbsence absence)
+        {
+            int absenceId = GetAbsencesNames().Where(x => x.Name.Equals(absence.AbsenceName)).Select(x => x.Id).FirstOrDefault();
+            Console.Write(absenceId.ToString());
+            string query = $"" +
+                $"INSERT INTO Employee_Absence(EmployeeID, AbsenceID, DateFrom, DateTo) " +
+                $"VALUES ({absence.EmployeeID}, {absenceId}, '{absence.DateFrom.ToString("yyyy-MM-dd")}', '{absence.DateTo.ToString("yyyy-MM-dd")}') " +
+                $"";
+
+            executeInsertSql(query);
+        }
+
+        public List<Absence> GetAbsencesNames()
+        {
+            string query = $"SELECT * FROM Absence";
+            List<Absence> absences = new List<Absence>();
+
+            var data = executeReaderSql(query);
+            while (data.Read())
+            {
+                absences.Add(new Absence()
+                {
+                    Id = data.GetInt32(0),
+                    Name = data.GetString(1),
+                });
+            }
+
             return absences;
         }
     }

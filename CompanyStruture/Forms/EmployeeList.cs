@@ -20,7 +20,7 @@ namespace CompanyStruture
 
         private void AddEmployee_Click(object sender, EventArgs e)
         {
-            AdditionEmployee additionEmployee = new AdditionEmployee(this);
+            AddEmployee additionEmployee = new AddEmployee(this);
             additionEmployee.ShowDialog();
         }
 
@@ -42,9 +42,14 @@ namespace CompanyStruture
             {
                 ListViewItem item = ShowListEmployee.SelectedItems[0];
 
-                EmployeeDetail employeeDetail = new EmployeeDetail(item.Text);
+                EmployeeDetails employeeDetail = new EmployeeDetails(item.Text);
                 employeeDetail.ShowDialog();
             }
+        }
+
+        private void EmployeeForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

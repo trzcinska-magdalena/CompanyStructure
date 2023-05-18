@@ -1,6 +1,6 @@
 ﻿namespace CompanyStruture.Forms
 {
-    partial class EmployeeDetail
+    partial class EmployeeDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -52,6 +52,7 @@
             this.AddAbsenceBtn.TabIndex = 1;
             this.AddAbsenceBtn.Text = "Add absence";
             this.AddAbsenceBtn.UseVisualStyleBackColor = true;
+            this.AddAbsenceBtn.Click += new System.EventHandler(this.AddAbsenceBtn_Click);
             // 
             // absenceTreeView
             // 
@@ -69,7 +70,7 @@
             this.ContractListView.TabIndex = 3;
             this.ContractListView.UseCompatibleStateImageBehavior = false;
             // 
-            // EmployeeDetail
+            // EmployeeDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,7 +79,7 @@
             this.Controls.Add(this.absenceTreeView);
             this.Controls.Add(this.AddAbsenceBtn);
             this.Controls.Add(this.NameEmp);
-            this.Name = "EmployeeDetail";
+            this.Name = "EmployeeDetails";
             this.Text = "Employee detail";
             this.Load += new System.EventHandler(this.EmployeeDetail_Load);
             this.ResumeLayout(false);

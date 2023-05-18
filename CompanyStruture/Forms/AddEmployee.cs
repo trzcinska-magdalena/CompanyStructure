@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace CompanyStruture
 {
-    public partial class AdditionEmployee : Form
+    public partial class AddEmployee : Form
     {
         private readonly IStructureRepository _structureRepository;
         private EmployeeForm employeeForm;
-        public AdditionEmployee(EmployeeForm employeeForm)
+        public AddEmployee(EmployeeForm employeeForm)
         {
             this.employeeForm = employeeForm;
             _structureRepository = new StructureRepository();
@@ -21,6 +21,7 @@ namespace CompanyStruture
 
         private void AdditionEmployee_Load(object sender, EventArgs e)
         {
+            FuelComboBox();
         }
 
         private void FuelComboBox()
