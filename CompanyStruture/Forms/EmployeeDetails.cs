@@ -64,12 +64,25 @@ namespace CompanyStruture.Forms
             ContractListView.Items.Clear();
             List<Contract> contracts = _structureRepository.GetEmployeeContracts(employeeId);
 
+
+
             foreach (Contract contract in contracts)
             {
-                ListViewItem listViewItem = new ListViewItem(contract.getData());
+                int icon = contract.DateTo < DateTime.Now ? 0 : 1;
+
+                string[] data = contract.getData();
+                ListViewItem listViewItem = new ListViewItem(new string[] { 
+                    "", 
+                    data[0],
+                    data[1],
+                    data[2],
+                    data[3],
+                    data[4],
+                    data[5],
+                    data[6],
+                    data[7]}, icon);
                 ContractListView.Items.Add(listViewItem);
             }
-            
         }
 
         private void AddAbsenceBtn_Click(object sender, EventArgs e)

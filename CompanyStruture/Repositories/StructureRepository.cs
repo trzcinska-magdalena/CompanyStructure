@@ -20,6 +20,7 @@ namespace CompanyStruture.Repository
         Dictionary<string, List<EmployeeAbsence>> GetEmployeeAbsence(int id);
         void AddAbsence(EmployeeAbsence absence);
         List<Contract> GetEmployeeContracts(int id);
+        void RemoveEmployeeContract(int EmployeeId, int ContractId);
     }
 
     public class StructureRepository : IStructureRepository
@@ -288,6 +289,14 @@ namespace CompanyStruture.Repository
             }
 
             return contracts;
+        }
+
+        public void RemoveEmployeeContract(int employeeId, int contractId)
+        {
+            string query = $"DELETE FROM Employee_Contract " +
+               $"WHERE EmployeeID = {employeeId} AND ContractID = {contractId}";
+
+            executeInsertSql(query);
         }
     }
 }
