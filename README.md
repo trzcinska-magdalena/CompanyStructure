@@ -1,3 +1,3 @@
 # CompanyStructure
 Data model
-![image](![image](https://github.com/trzcinska-magdalena/Company-structure_sql/blob/main/Data_model.png))
+![Data_model](https://github.com/trzcinska-magdalena/CompanyStructure/assets/109164652/536cfd1a-c29f-4bec-be61-12dfecc6be43)
