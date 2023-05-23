@@ -46,10 +46,5 @@ namespace CompanyStruture
                 employeeDetail.ShowDialog();
             }
         }
-
-        private void EmployeeForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

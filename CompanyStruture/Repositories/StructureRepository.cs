@@ -1,11 +1,8 @@
 ﻿using CompanyStruture.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompanyStruture.Repository
 {
@@ -31,7 +28,7 @@ namespace CompanyStruture.Repository
             _connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=company_structure;Integrated Security=True;";
         }
 
-        public SqlDataReader executeReaderSql(string query)
+        public SqlDataReader ExecuteReaderSql(string query)
         {
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
@@ -50,7 +47,7 @@ namespace CompanyStruture.Repository
             
         }
 
-        public void executeInsertSql(string query)
+        public void ExecuteInsertSql(string query)
         {
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
@@ -75,7 +72,7 @@ namespace CompanyStruture.Repository
                         $"INNER JOIN City on Address.CityID = City.ID";
             List<Employee> employees = new List<Employee>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 employees.Add(new Employee()
@@ -108,7 +105,7 @@ namespace CompanyStruture.Repository
 
             Employee employee = new Employee();
            
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 employee = new Employee()
@@ -147,7 +144,7 @@ namespace CompanyStruture.Repository
                 $"VALUES ({employeeId}, '{employee.Name}', '{employee.Surname}', '{employee.Pesel}', {addressId}) " +
                 $"SET IDENTITY_INSERT Employee OFF";
 
-            executeInsertSql(query);
+            ExecuteInsertSql(query);
         }
 
         public List<City> GetCities()
@@ -155,7 +152,7 @@ namespace CompanyStruture.Repository
             string query = $"SELECT * FROM City";
             List<City> cities = new List<City>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 cities.Add(new City()
@@ -174,7 +171,7 @@ namespace CompanyStruture.Repository
                 $"INNER JOIN City on Address.CityID = City.ID";
             List<Address> addresses = new List<Address>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 addresses.Add(new Address
@@ -198,7 +195,7 @@ namespace CompanyStruture.Repository
 
             Dictionary<string, List<EmployeeAbsence>> absences = new Dictionary<string, List<EmployeeAbsence>>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 if(absences.ContainsKey(data.GetString(0)))
@@ -237,7 +234,7 @@ namespace CompanyStruture.Repository
                 $"VALUES ({absence.EmployeeID}, {absenceId}, '{absence.DateFrom.ToString("yyyy-MM-dd")}', '{absence.DateTo.ToString("yyyy-MM-dd")}') " +
                 $"";
 
-            executeInsertSql(query);
+            ExecuteInsertSql(query);
         }
 
         public List<Absence> GetAbsencesNames()
@@ -245,7 +242,7 @@ namespace CompanyStruture.Repository
             string query = $"SELECT * FROM Absence";
             List<Absence> absences = new List<Absence>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 absences.Add(new Absence()
@@ -271,7 +268,7 @@ namespace CompanyStruture.Repository
 
             List<Contract> contracts = new List<Contract>();
 
-            var data = executeReaderSql(query);
+            var data = ExecuteReaderSql(query);
             while (data.Read())
             {
                 contracts.Add(new Contract()
@@ -296,7 +293,7 @@ namespace CompanyStruture.Repository
             string query = $"DELETE FROM Employee_Contract " +
                $"WHERE EmployeeID = {employeeId} AND ContractID = {contractId}";
 
-            executeInsertSql(query);
+            ExecuteInsertSql(query);
         }
     }
 }

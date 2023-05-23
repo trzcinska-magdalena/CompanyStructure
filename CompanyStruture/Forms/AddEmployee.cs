@@ -10,10 +10,10 @@ namespace CompanyStruture
     public partial class AddEmployee : Form
     {
         private readonly IStructureRepository _structureRepository;
-        private EmployeeForm employeeForm;
+        private EmployeeForm _employeeForm;
         public AddEmployee(EmployeeForm employeeForm)
         {
-            this.employeeForm = employeeForm;
+            _employeeForm = employeeForm;
             _structureRepository = new StructureRepository();
             InitializeComponent();
             FuelComboBox();
@@ -56,7 +56,7 @@ namespace CompanyStruture
                 }
             };
             _structureRepository.AddEmployee(employee);
-            employeeForm.AddEmployeesToList();
+            _employeeForm.AddEmployeesToList();
         }
 
         private void PeselTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -73,7 +73,7 @@ namespace CompanyStruture
             }
         }
 
-        private void nameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void NameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if ((nameTextBox.Text.Length > 50 || nameTextBox.Text.Length < 3) || !nameTextBox.Text.All(Char.IsLetter))
             {
@@ -87,7 +87,7 @@ namespace CompanyStruture
             }
         }
 
-        private void surnameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SurnameTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if ((surnameTextBox.Text.Length > 50 || surnameTextBox.Text.Length < 3) || !surnameTextBox.Text.All(Char.IsLetter))
             {
@@ -101,7 +101,7 @@ namespace CompanyStruture
             }
         }
 
-        private void buildingNumberTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void BuildingNumberTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (buildingNumberTextBox.Text.Length < 0)
             {
@@ -115,7 +115,7 @@ namespace CompanyStruture
             }
         }
 
-        private void localNumberTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void LocalNumberTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (localNumberTextBox.Text.Length < 0 || !localNumberTextBox.Text.All(Char.IsDigit))
             {
@@ -129,7 +129,7 @@ namespace CompanyStruture
             }
         }
 
-        private void cityComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void CityComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(cityComboBox.SelectedIndex.ToString() == "")
             {
@@ -143,7 +143,7 @@ namespace CompanyStruture
             }
         }
 
-        private void streetComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void StreetComboBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if ((streetComboBox.Text.Length > 100 || streetComboBox.Text.Length < 3) || !streetComboBox.Text.All(Char.IsLetter))
             {

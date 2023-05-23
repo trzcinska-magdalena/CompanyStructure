@@ -122,7 +122,7 @@
             this.addBtn.TabIndex = 8;
             this.addBtn.Text = "Add";
             this.addBtn.UseVisualStyleBackColor = true;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            this.addBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // nameError
             // 

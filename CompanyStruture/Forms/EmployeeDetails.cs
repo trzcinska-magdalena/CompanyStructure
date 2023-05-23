@@ -1,16 +1,8 @@
 ﻿using CompanyStruture.Models;
 using CompanyStruture.Repository;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CompanyStruture.Forms
 {
@@ -27,12 +19,12 @@ namespace CompanyStruture.Forms
 
         private void EmployeeDetail_Load(object sender, EventArgs e)
         {
-            showPersonalData();
-            showAbsence();
-            showContracts();
+            ShowPersonalData();
+            ShowAbsence();
+            ShowContracts();
         }
 
-        private void showPersonalData()
+        private void ShowPersonalData()
         {
             Employee employee = _structureRepository.GetEmployee(employeeId);
 
@@ -42,7 +34,7 @@ namespace CompanyStruture.Forms
             NameEmp.Text = $"{data[1]} {data[2]}\nPesel: {data[3]}\n\nAddress: {address[1]} {address[2]}{address[3]} {address[0]}";
         }
 
-        public void showAbsence()
+        public void ShowAbsence()
         {
             absenceTreeView.Nodes.Clear();
             Dictionary<string, List<EmployeeAbsence>> absences = _structureRepository.GetEmployeeAbsence(employeeId);
@@ -59,12 +51,10 @@ namespace CompanyStruture.Forms
             }
         }
 
-        public void showContracts()
+        public void ShowContracts()
         {
             ContractListView.Items.Clear();
             List<Contract> contracts = _structureRepository.GetEmployeeContracts(employeeId);
-
-
 
             foreach (Contract contract in contracts)
             {

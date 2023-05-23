@@ -27,16 +27,15 @@ namespace CompanyStruture.Forms
 
         private void AddAbsence_Load(object sender, EventArgs e)
         {
-            showPersonalData();
+            ShowPersonalData();
             FuelComboBox();
         }
 
-        private void showPersonalData()
+        private void ShowPersonalData()
         {
             Employee employee = _structureRepository.GetEmployee(employeeId);
 
             string[] data = employee.getPersonalData();
-
             employeeInfoLabel.Text = $"{data[1]} {data[2]}";
         }
 
@@ -50,7 +49,7 @@ namespace CompanyStruture.Forms
             }
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+        private void AddBtn_Click(object sender, EventArgs e)
         {
             if(nameComboBox.SelectedIndex.ToString() == "")
             {
@@ -66,7 +65,7 @@ namespace CompanyStruture.Forms
             };
 
             _structureRepository.AddAbsence(absence);
-            _employeeDetails.showAbsence();
+            _employeeDetails.ShowAbsence();
         }
     }
 }

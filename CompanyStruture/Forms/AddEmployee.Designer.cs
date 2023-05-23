@@ -78,7 +78,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(162, 22);
             this.nameTextBox.TabIndex = 1;
-            this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nameTextBox_Validating);
+            this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
             // 
             // surnameTextBox
             // 
@@ -87,7 +87,7 @@
             this.surnameTextBox.Name = "surnameTextBox";
             this.surnameTextBox.Size = new System.Drawing.Size(162, 22);
             this.surnameTextBox.TabIndex = 2;
-            this.surnameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.surnameTextBox_Validating);
+            this.surnameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.SurnameTextBox_Validating);
             // 
             // peselTextBox
             // 
@@ -141,7 +141,7 @@
             this.streetComboBox.Name = "streetComboBox";
             this.streetComboBox.Size = new System.Drawing.Size(162, 22);
             this.streetComboBox.TabIndex = 8;
-            this.streetComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.streetComboBox_Validating);
+            this.streetComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.StreetComboBox_Validating);
             // 
             // addressInfoLabel
             // 
@@ -178,7 +178,7 @@
             this.localNumberTextBox.Name = "localNumberTextBox";
             this.localNumberTextBox.Size = new System.Drawing.Size(162, 22);
             this.localNumberTextBox.TabIndex = 11;
-            this.localNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.localNumberTextBox_Validating);
+            this.localNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.LocalNumberTextBox_Validating);
             // 
             // buildingNumberTextBox
             // 
@@ -187,7 +187,7 @@
             this.buildingNumberTextBox.Name = "buildingNumberTextBox";
             this.buildingNumberTextBox.Size = new System.Drawing.Size(162, 22);
             this.buildingNumberTextBox.TabIndex = 10;
-            this.buildingNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.buildingNumberTextBox_Validating);
+            this.buildingNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.BuildingNumberTextBox_Validating);
             // 
             // cityComboBox
             // 
@@ -196,7 +196,7 @@
             this.cityComboBox.Name = "cityComboBox";
             this.cityComboBox.Size = new System.Drawing.Size(162, 24);
             this.cityComboBox.TabIndex = 14;
-            this.cityComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.cityComboBox_Validating);
+            this.cityComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.CityComboBox_Validating);
             // 
             // cityLabel
             // 

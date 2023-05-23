@@ -92,7 +92,6 @@
             this.Controls.Add(this.AddEmployee);
             this.Name = "EmployeeForm";
             this.Text = "Employee";
-            this.Load += new System.EventHandler(this.EmployeeForm_Load);
             this.ResumeLayout(false);
 
         }
