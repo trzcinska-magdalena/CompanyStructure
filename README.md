@@ -1,3 +1,3 @@
 # CompanyStructure
 Data model
-![image](https://github.com/trzcinska-magdalena/CompanyStructure/assets/109164652/4bd179b6-9c1c-4e38-beae-451fdaf361f6)
+![image](![image](https://github.com/trzcinska-magdalena/CompanyStructure/assets/109164652/f7808fa5-ab08-406f-9fc9-11437268fdc7))
