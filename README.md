@@ -1,6 +1,6 @@
 # CompanyStructure
-Data model
 <img src="https://github.com/trzcinska-magdalena/CompanyStructure/assets/109164652/536cfd1a-c29f-4bec-be61-12dfecc6be43" width="600"> <br>
+
 
 Local database SqlServer <br>
 Employee management application
